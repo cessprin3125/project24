@@ -1,8 +1,11 @@
 const Discord = require("discord.js");
 const Self = new Discord.Client();
+
 const config = require("./config.json");
+bot.afk = require("./afk.json")
 const token = config.token;
 const prefix = config.prefix;
+
 
 const chalk = require("chalk")
 
@@ -116,5 +119,51 @@ console.log(err)
 }
 }
 
+if(cmd === (prefix + "afk")){
+if(message.content.startsWith(prefix + "afk on")){
+message.delete()
+let raison = args.slice(1).join(" ")
+if(!raison) return;
+
+bot.afk[message.author.id] = {
+    
+           afk: "on",
+           raison: raison 
+    
+        };
+
+
+        
+        fs.writeFile("./afk.json", JSON.stringify (bot.afk, null, 4), err => {//ici il faudra mettre le nom du json ET le "client.warn" pour l'exemple que je vous est donner
+          
+        if (err) throw err; //dit si il y a une erreur
+
+        console.log('AFK activé.')
+       
+
+        });
+} if(message.content.startsWith(prefix + "afk off")){
+message.delete()
+bot.afk[message.author.id] = {
+    
+           afk: "off"
+           
+    
+        };
+
+
+        
+        fs.writeFile("./afk.json", JSON.stringify (bot.afk, null, 4), err => {//ici il faudra mettre le nom du json ET le "client.warn" pour l'exemple que je vous est donner
+          
+        if (err) throw err; //dit si il y a une erreur
+
+        console.log('AFK désactivé.')
+       
+
+        });
+}
+}
+
+}
 
 });
