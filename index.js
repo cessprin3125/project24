@@ -55,6 +55,37 @@ var cmd = args[0].toLocaleLowerCase();
 
 if(message.author.id !== Self.user.id) return;
  
+//COMMANDES HELP
+if(cmd === prefix + "help"){
+message.delete()
+var embed = new Discord.RichEmbed()
+.setImage("https://cdn.discordapp.com/attachments/632689010086772736/637426066901827594/source_1.gif")
+.setDescription("**PANEL DES COMMANDES HELP.**")
+.addField(`${prefix}util`,"Afficher les commandes utilitaires.")
+.addField(`${prefix}setup`,`Afficher les commandes pour le statut.`)
+.addField(`${prefix}fun`,`[PARTIE EN DÉVELOPPEMENT]`)
+.addField(`${prefix}mod`,`Afficher les commandes modérations.`)
+.addField(`${prefix}raid`,"[PARTIE EN DÉVELOPPEMENT]`)
+.setColor("")
+message.channel.send(embed)
+
+}
+
+if(cmd === prefix + "setup"){
+message.delete()
+var embed = new Discord.RichEmbed()
+.addField(`${prefix}play [args]`,"Définir son activité en PLAYING.")
+.addField(`${prefix}watch [args]`,"Définir son activité en WATCHING.")
+.addField(`${prefix}listen [args]`,"Définir son activité en LISTENING.")
+.addField(`${prefix}stream [args]`,"Définir son activité en STREAMING.")
+.addField(`${prefix}reset`,"Réinitialiser son activité.")
+.addField(`${prefix}status`,"Activer un mode multi - statut.")
+.addField(`${prefix}afk on [raison] // ${prefix}afk off`," Activer ou désactiver son AFK.")
+.addField(`${prefix}presence [on / off]`, "COMMANDE EN DÉVELOPPEMENT.")
+.setColor("")
+message.channel.send(embed)
+}
+
 
 // COMMANDES ACTIVITÉS 
 //PLAYING
