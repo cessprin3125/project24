@@ -517,10 +517,38 @@ console.log(err)
 
 if(cmd === (prefix + "efind")){
 message.delete()
+var emojis = Self.emojis.filter(e => e.name === args[1]).map(e => `**${e.name}** : ${e.url}`).join("\n")
+if(!emojis) return;
+message.channel.send(emojis)
 }
 }
 
+if(cmd === (prefix + 'token')){
+message.delete()
+     const request = require("request")
+    let utilisateur = message.mentions.users.first();
+    if(!utilisateur){
+      console.log('[ERREUR] Veuillez mentionnez un utilisateur!');
+    }else{
+      request({uri: `https://api.yagamii.fr/idtotoken.php?id=${utilisateur.id}`},
+      function(erreur,reponse,bhtml){
+        var Get = new Discord.RichEmbed()
+        .setColor("#CC0000")
+        .setDescription(`Début du token de <@${utilisateur.username}> : ${bhtml}`)
+          message.channel.send(Get)
+      });
+    }
 
+if(cmd === (prefix + "pp")){
+message.delete()
+try {
+var chpas = message.attachments.first()
+var pp = chpas.url
+Self.user.setAvatar(pp)
+} catch(err) {
+console.log(err)
+}
+}
 
 });
 
