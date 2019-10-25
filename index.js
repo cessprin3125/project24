@@ -4,7 +4,7 @@
 // init project
 const express = require("express");
 const app = express();
-
+const fs = require("fs");
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
@@ -192,8 +192,8 @@ Self.afk = {
         });
 }
   
-  if(Self.afk[afk] === "off") return;
-  if(!Self.afk[afk]) return;
+  if(Self.afk.afk === "off") return;
+  if(!Self.afk) return;
 
 }
 
@@ -588,7 +588,7 @@ Self.on("message", async message => {
 if(Self.afk.afk === "on"){
 if(message.mentions.users.has(Self.user.id)){
 var raison = Self.afk.raison
-message.reply(`J'suis actuellement AFK pour la raison suivante : **${raison}**`)
+message.channel.send(`J'suis actuellement AFK pour la raison suivante : **${raison}**`)
 }
 }
 });
