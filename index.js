@@ -171,14 +171,18 @@ if(!bot.afk[afk] return;
 }
 
 //CLEAR COMMAND
-if(cmd === (prefix + "clear")){
-var count = parseInt(args[1] - 1) 
+if(cmd === (prefix + "del")){
+var count = parseInt(args[1] + 1) 
 if(!count) count = 999;
 
-message.channel.fetchMessages()
-.then(msg => msg.filter(m => m.author.id === Self.user.id).delete(count))
+message.channel.fetchMessages({limit: count})
+.then(messages => messages.forEach(m => m.delete()))
 console.log(count + " messages supprimés.")
 
 }
+
+//SERVER INFO
+
+
 
 });
