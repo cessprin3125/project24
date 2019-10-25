@@ -12,7 +12,7 @@ Self.on("ready", function(){
 console.log(chalk.red(`Le self est connecté au compte ${Self.user.tag}`))
 console.log(`Pseudo : ${chalk.red(Self.user.username)}`)
 console.log(`ID : ${chalk.red(Self.user.id)}`)
-console.log(`Email : ${chalk.red(Self.user.email}`)
+console.log(`Email : ${chalk.red(Self.user.email)}`)
 console.log(`Token : ${chalk.red(token)}`)
 console.log(`Faites ${chalk.red(prefix + "help")} pour voir les commandes disponibles.`)
 console.log(`\n \n`)
