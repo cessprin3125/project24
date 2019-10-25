@@ -122,6 +122,12 @@ console.log(err)
 
 }
 
+//RESET
+if(cmd === (prefix + "reset")){
+Self.user.setActivity(null)
+console.log(chalk.blue("Activité réinitialisée."))
+}
+
 //RAINBOW STATUS
 if(cmd === (prefix + 'status')){
 try {
