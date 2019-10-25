@@ -106,7 +106,7 @@ setInterval(function(){
 if(online){
 Self.user.setStatus("idle")
 } if(idle){
-Self.user.setStatus("dnd)
+Self.user.setStatus("dnd")
 } if(dnd) {
 Self.user.setStatus("online")
 }
