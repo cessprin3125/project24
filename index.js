@@ -65,7 +65,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}setup`,`Afficher les commandes pour le statut.`)
 .addField(`${prefix}fun`,`[PARTIE EN DÉVELOPPEMENT]`)
 .addField(`${prefix}mod`,`Afficher les commandes modérations.`)
-.addField(`${prefix}raid`,"[PARTIE EN DÉVELOPPEMENT]`)
+.addField(`${prefix}raid`,"[PARTIE EN DÉVELOPPEMENT]")
 .setColor("")
 message.channel.send(embed)
 
