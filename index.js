@@ -1,3 +1,26 @@
+// server.js
+// where your node app starts
+
+// init project
+const express = require("express");
+const app = express();
+
+// we've started you off with Express,
+// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static("public"));
+
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + "/views/index.html");
+});
+
+// listen for requests :)
+const listener = app.listen(process.env.PORT, function() {
+  console.log("Your app is listening on port " + listener.address().port);
+});
+
 const Discord = require("discord.js");
 const Self = new Discord.Client();
 
@@ -116,8 +139,9 @@ Self.user.setStatus("dnd")
 Self.user.setStatus("online")
 }
 },5000)
+  
 } catch(err) {
-console.log(err)
+  console.log(err)
 }
 }
 
@@ -146,6 +170,7 @@ Self.afk = {
        
 
         });
+  
 } if(message.content.startsWith(prefix + "afk off")){
 message.delete()
 Self.afk = {
@@ -166,11 +191,13 @@ Self.afk = {
 
         });
 }
+  
+  if(Self.afk[afk] === "off") return;
+  if(!Self.afk[afk]) return;
+
 }
 
-if(Self.afk[afk] === "off" return;
-if(!Self.afk[afk] return;
-}
+
 
 /////////////////
 
@@ -482,6 +509,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         console.log(chalk.magenta("Infos utilisateurs envoyées !"));
       }
     }
+  }
 
 if(cmd === (prefix + "avatar")){
 message.delete()
@@ -491,14 +519,14 @@ var embed = new Discord.RichEmbed()
 .setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](user.avatarURL) si vous ne voyez pas l'image.`)
 .setImage(user.displayAvatarURL)
 .setColor(purple)
-message.channel.send(embed)
+message.channel.send(chpas)
 
 } else {
 var embed = new Discord.RichEmbed()
 .setDescription(`Voici votre avatar : \n Cliquez [ici](message.author.avatarURL) si vous ne voyez pas l'image.`)
 .setImage(message.author.displayAvatarURL)
 .setColor(purple)
-message.channel.send(embed)
+message.channel.send(chpas)
 
 }
 }
@@ -514,6 +542,7 @@ Self.user.setAvatar(user.avatarURL)
 } catch(err) {
 console.log(err)
 }
+}
 
 if(cmd === (prefix + "efind")){
 message.delete()
@@ -521,7 +550,7 @@ var emojis = Self.emojis.filter(e => e.name === args[1]).map(e => `**${e.name}**
 if(!emojis) return;
 message.channel.send(emojis)
 }
-}
+
 
 if(cmd === (prefix + 'token')){
 message.delete()
@@ -538,6 +567,7 @@ message.delete()
           message.channel.send(Get)
       });
     }
+}
 
 if(cmd === (prefix + "pp")){
 message.delete()
@@ -555,9 +585,9 @@ console.log(err)
 
 
 Self.on("message", async message => {
-if(Self.afk[afk].afk === "on"){
+if(Self.afk.afk === "on"){
 if(message.mentions.users.has(Self.user.id)){
-var raison = Self.afk[afk].raison
+var raison = Self.afk.raison
 message.reply(`J'suis actuellement AFK pour la raison suivante : **${raison}**`)
 }
 }
