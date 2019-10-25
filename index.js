@@ -129,16 +129,15 @@ var online = Self.user.presence.status === "online";
 var idle = Self.user.presence.status === "idle";
 var dnd = Self.user.presence.status === "dnd";
 
-await Self.user.setStatus("online")
+
 setInterval(function(){
-if(online){
-Self.user.setStatus("idle")
-} if(idle){
-Self.user.setStatus("dnd")
-} if(dnd) {
-Self.user.setStatus("online")
-}
-},5000)
+await Self.user.setStatus("online")
+await Self.user.setStatus("idle")
+await Self.user.setStatus("dnd")
+await Self.user.setStatus("offline")
+
+
+},2000)
   
 } catch(err) {
   console.log(err)
@@ -150,7 +149,7 @@ Self.user.setStatus("online")
 if(cmd === (prefix + "afk")){
 if(message.content.startsWith(prefix + "afk on")){
 message.delete()
-let raison = args.slice(1).join(" ")
+let raison = args.slice(2).join(" ")
 if(!raison) return;
 
 Self.afk = {
