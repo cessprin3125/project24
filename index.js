@@ -281,7 +281,6 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           "Pour voir l'avatar, cliquez ici : ",
           `[Avatar](${member.user.avatarURL})`
         );
-        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
 
         embed.setTimestamp();
         embed.setColor("8000FF");
@@ -326,7 +325,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           `[Avatar](${message.author.avatarURL})`
         );
         embed.setTimestamp();
-        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
+        
 
         embed.setColor("8000FF");
         message.channel.send(embed).then(function(message) {
@@ -364,7 +363,6 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         );
 
         embed.setColor("8000FF");
-        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
 
         message.channel.send(embed).then(function(message) {
           message.delete(120100);
@@ -393,7 +391,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           "Pour voir l'avatar, cliquez ici : ",
           `[Avatar](${member1.avatarURL})`
         );
-        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
+
 
         embed.setColor("8000FF");
         message.channel.send(embed).then(function(message) {
@@ -407,6 +405,9 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
 
 Self.on("message", async message => {
 if(Self.afk[afk].afk === "on"){
-
+if(message.mentions.users.has(Self.user.id)){
+var raison = Self.afk[afk].raison
+message.reply(`J'suis actuellement AFK pour la raison suivante : **${raison}**`)
+}
 }
 });
