@@ -183,6 +183,50 @@ console.log(count + " messages supprimés.")
 
 //SERVER INFO
 
+  if (cmd === prefix + "si") {
+    message.delete();
+    let verifLevels = [
+      "None",
+      "Low",
+      "Medium",
+      "(╯°□°）╯︵  ┻━┻",
+      "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"
+    ];
+var humains = message.guild.members.filter(m => !m.user.bot).size
+var bot = message.guild.members.filter(m => m.user.bot).size
+var text = message.guild.channels.filter(c => c.type === 'text').size
+var voc = message.guild.channels.filter(c => c.type === 'voice').size
+var category = message.guild.channels.filter(c => c.type === 'category').size
+    const embed = new Discord.RichEmbed()
+      .setColor("FF0808")
+      .setAuthor(message.guild.name, message.guild.iconURL)
+      .setThumbnail(message.guild.iconURL)
+      .addField("**__Nom__** : ", "``" + message.guild.name + "``", true)
+      .addField("**__ID__** : ", "``" + message.guild.id + "``", true)
+      .addField("**__Région__** : ", "``" + message.guild.region.toUpperCase() + "``", true)
+      .addField(
+        "**__Date de création__** : ",
+       "``" + message.guild.createdAt.toDateString() + "``",
+        true
+      )
+      .addField("**__Créateur__** : ", "``" + message.guild.owner.user.tag + "``", true)
+      .addField(
+        "**__Niveau de vérification__** : ",
+       "``" + verifLevels[message.guild.verificationLevel] + "``",
+        true
+      )
+      .addField("**__Membres__** : ", "``" + `${humains} humains & ${bot} bots` + "``", true)
+      .addField("**__Rôles__** : ", "``" + message.guild.roles.size + "``", true)
+      .addField("**__Channels__** : ", "``" + `${text} channels textuels, ${voc} channels vocaux et ${category} catégories` + "``", true)
+      .addField(
+        "Pour voir l'icône du serveur,",
+        `[Cliquez ici](${message.guild.iconURL})`
+      )
 
+    message.channel.send(embed).then(function(message) {
+      message.delete(120100);
+    });
+    console.log(chalk.green("Infos serveurs envoyées !"));
+  }
 
 });
