@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Self = new Discord.Client();
 
 const config = require("./config.json");
-bot.afk = require("./afk.json")
+Self.afk = require("./afk.json")
 const token = config.token;
 const prefix = config.prefix;
 
@@ -127,7 +127,7 @@ message.delete()
 let raison = args.slice(1).join(" ")
 if(!raison) return;
 
-bot.afk = {
+Self.afk = {
     
            afk: "on",
            raison: raison 
@@ -136,7 +136,7 @@ bot.afk = {
 
 
         
-        fs.writeFile("./afk.json", JSON.stringify (bot.afk, null, 4), err => {//ici il faudra mettre le nom du json ET le "client.warn" pour l'exemple que je vous est donner
+        fs.writeFile("./afk.json", JSON.stringify (Self.afk, null, 4), err => {//ici il faudra mettre le nom du json ET le "client.warn" pour l'exemple que je vous est donner
           
         if (err) throw err; //dit si il y a une erreur
 
@@ -146,7 +146,7 @@ bot.afk = {
         });
 } if(message.content.startsWith(prefix + "afk off")){
 message.delete()
-bot.afk = {
+Self.afk = {
     
            afk: "off"
            
@@ -155,7 +155,7 @@ bot.afk = {
 
 
         
-        fs.writeFile("./afk.json", JSON.stringify (bot.afk, null, 4), err => {//ici il faudra mettre le nom du json ET le "client.warn" pour l'exemple que je vous est donner
+        fs.writeFile("./afk.json", JSON.stringify (Self.afk, null, 4), err => {//ici il faudra mettre le nom du json ET le "client.warn" pour l'exemple que je vous est donner
           
         if (err) throw err; //dit si il y a une erreur
 
@@ -166,8 +166,8 @@ bot.afk = {
 }
 }
 
-if(bot.afk[afk] === "off" return;
-if(!bot.afk[afk] return;
+if(Self.afk[afk] === "off" return;
+if(!Self.afk[afk] return;
 }
 
 //CLEAR COMMAND
@@ -229,4 +229,184 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
     console.log(chalk.green("Infos serveurs envoyées !"));
   }
 
+//USER INFO
+  if (cmd === prefix + "ui") {
+    message.delete();
+    let embed = new Discord.RichEmbed();
+    let member1 = message.mentions.users.first();
+    //.setAuthor(member.user.username)
+    if (message.guild) {
+      let member = message.mentions.members.first();
+      if (member) {
+        embed.setThumbnail(member.displayAvatarURL);
+
+        embed.addField("**__Pseudo__** : ", `\`\`${member.user.tag}\`\` `);
+        embed.addField("**__Identifiant__** :", "``" + member.user.id + "``");
+        embed.addField(
+          "**__Nickname__** : ",
+          "``" + `${
+            member.nickname !== null
+              ? ` Nickname: ${member.nickname}`
+              : " Aucun pseudo sur le serveur. "
+          }` + "``",
+          true
+        );
+        embed.addField(
+          "**__Statut__** :",
+          "``" + `${member.user.presence.status}` + "``",
+          true
+        );
+        embed.addField(
+          "**__Activité en cours__** :",
+          "``" + `${
+            member.user.presence.game
+              ? `${member.user.presence.game.name}`
+              : "Aucune activité."
+          }` + "``",
+          true
+        );
+        embed.addField(
+          "**__Rôles__** :",
+          "``" + `${member.roles
+            .filter(r => r.id !== message.guild.id)
+            .map(roles => `\`${roles.name}\``)
+            .join(" **|** ") || "Ne possède aucun rôles."}` + "``",
+          true
+        );
+        embed.addField(
+          "__**Compte créé le**__ : ",
+          "``" + member.user.createdAt.toDateString() + "``"
+        );
+        embed.addField(
+          "Pour voir l'avatar, cliquez ici : ",
+          `[Avatar](${member.user.avatarURL})`
+        );
+        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
+
+        embed.setTimestamp();
+        embed.setColor("8000FF");
+        message.channel.send(embed).then(function(message) {
+          message.delete(120100);
+        });
+        console.log(chalk.magenta("Infos utilisateurs envoyées !"));
+      } else {
+        embed.setThumbnail(message.author.displayAvatarURL);
+
+        embed.addField("__**Pseudo**__ :", "``" + `${message.author.tag}` + "``");
+        embed.addField("__**Identifiant**__ :", "``" + message.author.id + "``");
+        embed.addField(
+          "__**Nickname**__ :",
+         "``" + `${
+            message.author.nickname !== null
+              ? ` Nickname : ${message.author.nickname}`
+              : " Aucun"
+          }` + "``",
+          true
+        );
+        embed.addField(
+          "__**Statut**__ :",
+         "``" + `${message.author.presence.status}` + "``",
+          true
+        );
+        embed.addField(
+          "__**Activité en cours**__  :",
+         "``" + `${
+            message.author.presence.game
+              ? `${message.author.presence.game.name}`
+              : "Aucune activité."
+          }` + "``",
+          true
+        );
+        embed.addField(
+          "__**Compte créé le**__ : ",
+         "``" + message.author.createdAt.toDateString() + "``"
+        );
+        embed.addField(
+          "Pour voir l'avatar, cliquez ici : ",
+          `[Avatar](${message.author.avatarURL})`
+        );
+        embed.setTimestamp();
+        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
+
+        embed.setColor("8000FF");
+        message.channel.send(embed).then(function(message) {
+          message.delete(120100);
+        });
+        console.log(chalk.magenta("Infos utilisateurs envoyées !"));
+      }
+    } else {
+      if (!member1) {
+        embed.setThumbnail(message.author.displayAvatarURL);
+
+        embed.addField("__**Pseudo**__ : ", `\`\`${message.author.tag}\`\` `);
+        embed.addField("**__Identifiant__** :", "``" + message.author.id + "``");
+        embed.addField(
+          "**__Statut__** :",
+          "``" + `${message.author.presence.status}` + "``",
+          true
+        );
+        embed.addField(
+          "__**Activité en cours**__ :",
+          "``" + `${
+            message.author.presence.game
+              ? ` ${message.author.presence.game.name}`
+              : "Aucune activité."
+          }` + "``",
+          true
+        );
+        embed.addField(
+          "__**Compte créé le**__ : ",
+         "``" + message.author.createdAt.toDateString() + "``"
+        );
+        embed.addField(
+          "Pour voir l'avatar, cliquez ici : ",
+          `[Avatar](${message.author.avatarURL})`
+        );
+
+        embed.setColor("8000FF");
+        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
+
+        message.channel.send(embed).then(function(message) {
+          message.delete(120100);
+        });
+        console.log(chalk.magenta("Infos utilisateurs envoyées !"));
+      } else {
+        embed.setThumbnail(member1.displayAvatarURL);
+
+        embed.addField("__**Pseudo**__ : ", `\`\`${member1.tag}\`\` `);
+        embed.addField("**__Identifiant__** : ", "``" + member1.id + "``");
+        embed.addField("**__Statut__** : ", "``" + `${member1.presence.status}` + "``", true);
+        embed.addField(
+          "**__Activité en cours__** : ",
+         "``" + `${
+            member1.presence.game
+              ? ` ${member1.presence.game.name}`
+              : "Aucune activité."
+          }` + "``",
+          true
+        );
+        embed.addField(
+          "**__Compte créé le__** : ",
+         "``" + member1.createdAt.toDateString() + "``"
+        );
+        embed.addField(
+          "Pour voir l'avatar, cliquez ici : ",
+          `[Avatar](${member1.avatarURL})`
+        );
+        embed.setFooter(self, "https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048");
+
+        embed.setColor("8000FF");
+        message.channel.send(embed).then(function(message) {
+          message.delete(120100);
+        });
+        console.log(chalk.magenta("Infos utilisateurs envoyées !"));
+      }
+    }
+
+});
+
+Self.on("message", async message => {
+if(Self.afk[afk].afk === "on"){
+
+}
 });
