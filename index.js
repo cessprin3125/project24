@@ -97,9 +97,19 @@ console.log(err)
 //RAINBOW STATUS
 if(cmd === (prefix + 'status')){
 try {
+var online = Self.user.presence.status === "online";
+var idle = Self.user.presence.status === "idle";
+var dnd = Self.user.presence.status === "dnd";
+
 await Self.user.setStatus("online")
 setInterval(function(){
-
+if(online){
+Self.user.setStatus("idle")
+} if(idle){
+Self.user.setStatus("dnd)
+} if(dnd) {
+Self.user.setStatus("online")
+}
 },5000)
 } catch(err) {
 console.log(err)
