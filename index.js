@@ -29,4 +29,75 @@ var cmd = args[0].toLocaleLowerCase();
 
 if(message.author.id !== Self.user.id) return;
 
+//PLAYING
+if(cmd === (prefix + 'play')){
+message.delete()
+var act = args.slice(1).join(" ")
+if(!act) return;
+try {
+Self.user.setActivity(act, {type: "PLAYING"})
+.then(() => {
+console.log(chalk.blue("Activité mise à jour avec succès."))
+})
+} catch(err){
+console.log(err)
+}
+
+}
+
+
+//WATCHING
+if(cmd === (prefix + 'watch')){
+message.delete()
+var act = args.slice(1).join(" ")
+if(!act) return;
+try {
+Self.user.setActivity(act, {type: "WATCHING"})
+.then(() => {
+console.log(chalk.blue("Activité mise à jour avec succès."))
+})
+} catch(err){
+console.log(err)
+}
+
+}
+
+//STREAMING
+if(cmd === (prefix + 'stream')){
+message.delete()
+var act = args.slice(1).join(" ")
+if(!act) return;
+try {
+Self.user.setActivity(act, {type: "STREAMING", url: "https://twitchtv.com/chpas"})
+.then(() => {
+console.log(chalk.blue("Activité mise à jour avec succès."))
+})
+} catch(err){
+console.log(err)
+}
+
+}
+
+//LISTENING
+if(cmd === (prefix + 'listen')){
+message.delete()
+var act = args.slice(1).join(" ")
+if(!act) return;
+try {
+Self.user.setActivity(act, {type: "LISTENING"})
+.then(() => {
+console.log(chalk.blue("Activité mise à jour avec succès."))
+})
+} catch(err){
+console.log(err)
+}
+
+}
+
+//RAINBOW STATUS
+if(cmd === (prefix + 'status')){
+
+}
+
+
 });
