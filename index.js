@@ -125,7 +125,7 @@ message.delete()
 let raison = args.slice(1).join(" ")
 if(!raison) return;
 
-bot.afk[message.author.id] = {
+bot.afk = {
     
            afk: "on",
            raison: raison 
@@ -144,7 +144,7 @@ bot.afk[message.author.id] = {
         });
 } if(message.content.startsWith(prefix + "afk off")){
 message.delete()
-bot.afk[message.author.id] = {
+bot.afk = {
     
            afk: "off"
            
