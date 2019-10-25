@@ -130,7 +130,7 @@ var idle = Self.user.presence.status === "idle";
 var dnd = Self.user.presence.status === "dnd";
 
 
-setInterval(function(){
+setInterval(async function(){
 await Self.user.setStatus("online")
 await Self.user.setStatus("idle")
 await Self.user.setStatus("dnd")
