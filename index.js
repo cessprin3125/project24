@@ -96,7 +96,14 @@ console.log(err)
 
 //RAINBOW STATUS
 if(cmd === (prefix + 'status')){
+try {
+await Self.user.setStatus("online")
+setInterval(function(){
 
+},5000)
+} catch(err) {
+console.log(err)
+}
 }
 
 
