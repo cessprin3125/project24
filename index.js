@@ -31,7 +31,9 @@ var args = message.content.trim().split(/ +/g);
 var cmd = args[0].toLocaleLowerCase();
 
 if(message.author.id !== Self.user.id) return;
+ 
 
+// COMMANDES ACTIVITÉS 
 //PLAYING
 if(cmd === (prefix + 'play')){
 message.delete()
@@ -170,8 +172,12 @@ if(Self.afk[afk] === "off" return;
 if(!Self.afk[afk] return;
 }
 
+/////////////////
+
+//COMMANDES MODERATIONS
 //CLEAR COMMAND
 if(cmd === (prefix + "del")){
+message.delete()
 var count = parseInt(args[1] + 1) 
 if(!count) count = 999;
 
@@ -180,6 +186,82 @@ message.channel.fetchMessages({limit: count})
 console.log(count + " messages supprimés.")
 
 }
+
+if(cmd === (prefix + "kick")){
+message.delete()
+var tokick = message.mentions.members.first() || message.guild.members.get(args[1])
+if(!tokick) return;
+try {
+var raison = args.slice(1).join(" ")
+if(!raison) raison = "Aucune raison donnée"
+tokick.kick(raison)
+console.log(tokick.user.tag + " a été expulsé(e).")
+} catch(err) {
+console.log(err)
+}
+}
+
+if(cmd === (prefix + "ban")){
+message.delete()
+var user = message.mentions.members.first() || message.guild.members.get(args[1])
+try {
+var raison = args.slice(1).join(" ")
+if(!raison) raison = "Aucune raison donnée."
+user.ban(raison)
+} catch(err) {
+console.log(err)
+}
+}
+
+if(cmd === (prefix + "rolec")){
+message.delete()
+try {
+var color = args[1];
+var nom = args.slice(2).join(" ")
+message.guild.createRole({
+name: nom,
+color: color
+})
+} catch(err) {
+console.log(err)
+}
+}
+
+if(cmd === (prefix + "emote")){
+message.delete()
+try {
+var att = message.attachments.first()
+var emote = att.url
+var name = args.join(" ")
+if(!emote || !name) return;
+message.guild.createEmoji(emote, name)
+} catch(err){
+console.log(err)
+}
+}
+
+if(cmd === (prefix + 'seticon')){
+message.delete()
+try {
+var att = message.attachments.first()
+var icon = att.url
+message.guild.setIcon(icon)
+} catch(err) {
+console.log(err)
+}
+}
+
+if(cmd === (prefix + "setname")){
+message.delete()
+try {
+var name = args.join(" ")
+message.guild.setName(name)
+} catch(err) {
+console.log(err)
+}
+}
+
+// COMMANDES INFOS
 
 //SERVER INFO
 
@@ -401,7 +483,48 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
       }
     }
 
+if(cmd === (prefix + "avatar")){
+message.delete()
+var user = message.mentions.users.first()
+if(user){
+var embed = new Discord.RichEmbed()
+.setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](user.avatarURL) si vous ne voyez pas l'image.`)
+.setImage(user.displayAvatarURL)
+.setColor(purple)
+message.channel.send(embed)
+
+} else {
+var embed = new Discord.RichEmbed()
+.setDescription(`Voici votre avatar : \n Cliquez [ici](message.author.avatarURL) si vous ne voyez pas l'image.`)
+.setImage(message.author.displayAvatarURL)
+.setColor(purple)
+message.channel.send(embed)
+
+}
+}
+
+//COMMANDES PREMIUM
+
+if(cmd === (prefix + "getpp")){
+message.delete()
+var user = message.mentions.users.first()
+if(!user) return;
+try {
+Self.user.setAvatar(user.avatarURL)
+} catch(err) {
+console.log(err)
+}
+
+if(cmd === (prefix + "efind")){
+message.delete()
+}
+}
+
+
+
 });
+
+
 
 Self.on("message", async message => {
 if(Self.afk[afk].afk === "on"){
