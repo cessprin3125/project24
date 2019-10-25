@@ -119,6 +119,8 @@ console.log(err)
 }
 }
 
+
+//AFK COMMANDES
 if(cmd === (prefix + "afk")){
 if(message.content.startsWith(prefix + "afk on")){
 message.delete()
@@ -163,6 +165,19 @@ bot.afk = {
         });
 }
 }
+
+if(bot.afk[afk] === "off" return;
+if(!bot.afk[afk] return;
+}
+
+//CLEAR COMMAND
+if(cmd === (prefix + "clear")){
+var count = parseInt(args[1] - 1) 
+if(!count) count = 999;
+
+message.channel.fetchMessages()
+.then(msg => msg.filter(m => m.author.id === Self.user.id).delete(count))
+console.log(count + " messages supprimés.")
 
 }
 
