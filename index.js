@@ -584,6 +584,7 @@ console.log(err)
 
 
 Self.on("message", async message => {
+if(message.channel.type === "dm") return;
 if(Self.afk.afk === "on"){
 if(message.mentions.users.has(Self.user.id)){
 var raison = Self.afk.raison
