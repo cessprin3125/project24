@@ -208,7 +208,7 @@ var count = parseInt(args[1] + 1)
 if(!count) count = 999;
 
 message.channel.fetchMessages({limit: count})
-.then(messages => messages.forEach(m => m.delete()))
+.then(messages => messages.forEach(m => m.delete().catch(() => return;)))
 console.log(count + " messages supprimés.")
 
 }
