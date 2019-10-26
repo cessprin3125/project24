@@ -35,6 +35,20 @@ const chalk = require("chalk")
 Self.login(token).catch(() => console.log("Le token que vous avez saisi est invalide."))
 
 Self.on("ready", function(){
+
+console.log(` 
+    /$$$$$           /$$ /$$                    
+   |__  $$          | $$|__/                    
+      | $$ /$$   /$$| $$ /$$  /$$$$$$   /$$$$$$ 
+      | $$| $$  | $$| $$| $$ |____  $$ |____  $$
+ /$$  | $$| $$  | $$| $$| $$  /$$$$$$$  /$$$$$$$
+| $$  | $$| $$  | $$| $$| $$ /$$__  $$ /$$__  $$
+|  $$$$$$/|  $$$$$$/| $$| $$|  $$$$$$$|  $$$$$$$
+ \______/  \______/ |__/|__/ \_______/ \_______/
+                                                
+                                                
+                                                
+`)
 console.log(chalk.red(`Le self est connecté au compte ${Self.user.tag}`))
 console.log(`Pseudo : ${chalk.red(Self.user.username)}`)
 console.log(`ID : ${chalk.red(Self.user.id)}`)
