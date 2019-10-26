@@ -36,7 +36,7 @@ Self.login(token).catch(() => console.log("Le token que vous avez saisi est inva
 
 Self.on("ready", function(){
 
-console.log(` 
+console.log(chalk.magenta(` 
     /$$$$$           /$$ /$$                    
    |__  $$          | $$|__/                    
       | $$ /$$   /$$| $$ /$$  /$$$$$$   /$$$$$$ 
@@ -48,7 +48,7 @@ console.log(`
                                                 
                                                 
                                                 
-`)
+`))
 console.log(chalk.red(`Le self est connecté au compte ${Self.user.tag}`))
 console.log(`Pseudo : ${chalk.red(Self.user.username)}`)
 console.log(`ID : ${chalk.red(Self.user.id)}`)
@@ -285,10 +285,10 @@ Self.afk = {
 
 //COMMANDES MODERATIONS
 //CLEAR COMMAND
-if(cmd === (prefix + "del")){
-message.delete()
-try {
- let messagecount = parseInt(args[0]) || 999;
+
+if (cmd === prefix + "del") {
+    let args = message.content.split(" ").slice(1);
+    let messagecount = parseInt(args[0]) || 999;
     var deletedMessages = -1;
     message.channel
       .fetchMessages({
@@ -311,10 +311,17 @@ try {
           deletedMessages++;
         });
       })
-} catch(err) {
-console.log(err)
-}
-}
+      .then(() => {
+        if (deletedMessages === -1) deletedMessages = 0;
+        console.log(chalk.green(messagecount + " messages supprimés."))
+          .then(message => message.delete(3500))
+          .then(function(message) {
+            message.delete(5000);
+          });
+      })
+      .catch(console.error);
+    console.log(chalk.green("Messages supprimés."));
+  }
 
 if(cmd === (prefix + "kick")){
 message.delete()
@@ -324,7 +331,7 @@ try {
 var raison = args.slice(1).join(" ")
 if(!raison) raison = "Aucune raison donnée"
 tokick.kick(raison)
-console.log(tokick.user.tag + " a été expulsé(e).")
+console.log(chalk.green(tokick.user.tag + " a été expulsé(e)."))
 } catch(err) {
 console.log(err)
 }
@@ -337,7 +344,7 @@ try {
 var raison = args.slice(1).join(" ")
 if(!raison) raison = "Aucune raison donnée."
 user.ban(raison)
-console.log(user + " a été banni(e).")
+console.log(chalk.green(user + " a été banni(e)."))
 } catch(err) {
 console.log(err)
 }
@@ -352,7 +359,7 @@ message.guild.createRole({
 name: nom,
 color: color
 })
-console.log("Le rôle a été créé.")
+console.log(chalk.green("Le rôle a été créé."))
 } catch(err) {
 console.log(err)
 }
@@ -366,6 +373,7 @@ var emote = att.url
 var name = args.join(" ")
 if(!emote || !name) return;
 message.guild.createEmoji(emote, name)
+console.log(chalk.green("L'emoji a été créé."))
 } catch(err){
 console.log(err)
 }
@@ -509,7 +517,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         embed.addField(
           "__**Nickname**__ :",
          "``" + `${
-            message.author.nickname !== null
+            message.author.nickname !== undefined
               ? ` Nickname : ${message.author.nickname}`
               : " Aucun"
           }` + "``",
