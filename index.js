@@ -108,6 +108,7 @@ message.channel.send(embed)
 }
 
 if(cmd === (prefix + "mod")){
+message.delete()
 var embed = new Discord.RichEmbed()
 .setDescription("COMMANDES MODÉRATION : ")
 .addField(`${prefix}del [nbre]`," Supprimer un nombre défini de message.")
@@ -121,6 +122,16 @@ var embed = new Discord.RichEmbed()
 message.channel.send(embed)
 }
 
+if(cmd === (prefix + "util")){
+message.delete()
+var embed = new Discord.RichEmbed()
+.setDescription("COMMANDES UTILITAIRES : ")
+.addField(`${prefix}ui [@user]`, "Voir les informations de son compte où celle de la personne mentionnée.")
+.addField(`${prefix}avatar [@user]`,"Voir son avatar ou celui de la personne mentionnée.")
+.addField(`${prefix}si`,"Voir les informations du serveur où la commande est effectuée.")
+
+
+}
 
 // COMMANDES ACTIVITÉS 
 //PLAYING
