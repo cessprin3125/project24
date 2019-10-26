@@ -66,7 +66,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}fun`,`[PARTIE EN DÉVELOPPEMENT]`)
 .addField(`${prefix}mod`,`Afficher les commandes modérations.`)
 .addField(`${prefix}raid`,"[PARTIE EN DÉVELOPPEMENT]")
-.setColor("")
+.setColor("7401DF")
 message.channel.send(embed)
 
 }
@@ -74,6 +74,7 @@ message.channel.send(embed)
 if(cmd === prefix + "setup"){
 message.delete()
 var embed = new Discord.RichEmbed()
+.setDescription(`Voici les commandes disponibles : `)
 .addField(`${prefix}play [args]`,"Définir son activité en PLAYING.")
 .addField(`${prefix}watch [args]`,"Définir son activité en WATCHING.")
 .addField(`${prefix}listen [args]`,"Définir son activité en LISTENING.")
@@ -82,8 +83,12 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}status`,"Activer un mode multi - statut.")
 .addField(`${prefix}afk on [raison] // ${prefix}afk off`," Activer ou désactiver son AFK.")
 .addField(`${prefix}presence [on / off]`, "COMMANDE EN DÉVELOPPEMENT.")
-.setColor("")
+.setColor("7401DF")
 message.channel.send(embed)
+}
+
+if(cmd === (prefix + "mod")){
+var embed = new Discord.RichEmbed()
 }
 
 
