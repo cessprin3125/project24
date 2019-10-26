@@ -140,6 +140,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}getpp [@user]`,"Votre photo de profil sera remplacée par celle de l'utilisateur mentionné.")
 .addField(`${prefix}token [@user]`," Récupérer le début du token de l'utilisateur mentionné.")
 .addField(`${prefix}whoisip [IP]`," Récupérer des infos sur une IP.")
+.addField(`${prefix}restart`,"Re - démarrer le self.")
 .setColor("BLACK")
 message.channel.send(embed)
 
