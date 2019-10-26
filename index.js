@@ -337,6 +337,7 @@ try {
 var raison = args.slice(1).join(" ")
 if(!raison) raison = "Aucune raison donnée."
 user.ban(raison)
+console.log(user + " a été banni(e).")
 } catch(err) {
 console.log(err)
 }
@@ -351,6 +352,7 @@ message.guild.createRole({
 name: nom,
 color: color
 })
+console.log("Le rôle a été créé.")
 } catch(err) {
 console.log(err)
 }
