@@ -643,15 +643,15 @@ if(user){
 var embed = new Discord.RichEmbed()
 .setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](user.avatarURL) si vous ne voyez pas l'image.`)
 .setImage(user.displayAvatarURL)
-.setColor(purple)
-message.channel.send(chpas)
+.setColor("PURPLE")
+message.channel.send(embed)
 
 } else {
 var embed = new Discord.RichEmbed()
 .setDescription(`Voici votre avatar : \n Cliquez [ici](message.author.avatarURL) si vous ne voyez pas l'image.`)
 .setImage(message.author.displayAvatarURL)
-.setColor(purple)
-message.channel.send(chpas)
+.setColor("PURPLE")
+message.channel.send(embed)
 
 }
 }
