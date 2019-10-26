@@ -287,13 +287,33 @@ Self.afk = {
 //CLEAR COMMAND
 if(cmd === (prefix + "del")){
 message.delete()
-var count = parseInt(args[1] + 1) 
-if(!count) count = 999;
-
-message.channel.fetchMessages({limit: count})
-.then(messages => messages.forEach(m => m.delete()))
-console.log(count + " messages supprimés.")
-
+try {
+ let messagecount = parseInt(args[0]) || 999;
+    var deletedMessages = -1;
+    message.channel
+      .fetchMessages({
+        limit: Math.min(
+          messagecount + 1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          999
+        )
+      })
+      .then(messages => {
+        messages.forEach(m => {
+          m.delete().catch(console.error);
+          deletedMessages++;
+        });
+      })
+} catch(err) {
+console.log(err)
+}
 }
 
 if(cmd === (prefix + "kick")){
