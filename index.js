@@ -140,7 +140,9 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}getpp [@user]`,"Votre photo de profil sera remplacée par celle de l'utilisateur mentionné.")
 .addField(`${prefix}token [@user]`," Récupérer le début du token de l'utilisateur mentionné.")
 .addField(`${prefix}whoisip [IP]`," Récupérer des infos sur une IP.")
+.addField(`${prefix}embed [hex color] [texte]`,"Envoyer un message sous forme de embed.")
 .addField(`${prefix}restart`,"Re - démarrer le self.")
+.setImage("https://cdn.discordapp.com/attachments/637644607655772206/637726056215871513/hanayamata.gif")
 .setColor("BLACK")
 message.channel.send(embed)
 
@@ -657,6 +659,17 @@ message.channel.send(embed)
 }
 
 //COMMANDES PREMIUM
+
+if(cmd === (prefix + 'embed')){
+message.delete()
+var color = args[1]
+var texte = args.slice(2).join(" ")
+if(!color || !texte) return;
+var embed = new Discord.RichEmbed()
+.setDescription(texte)
+.setColor(color)
+message.channel.send(embed)
+}
 
 if(cmd === (prefix + "getpp")){
 message.delete()
