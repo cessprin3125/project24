@@ -139,7 +139,9 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}pp [image en attachement]`,"Changer sa photo de profil.")
 .addField(`${prefix}getpp [@user]`,"Votre photo de profil sera remplacée par celle de l'utilisateur mentionné.")
 .addField(`${prefix}token [@user]`," Récupérer le début du token de l'utilisateur mentionné.")
-
+.addField(`${prefix}whoisip [IP]`," Récupérer des infos sur une IP.")
+.setColor("BLACK")
+message.channel.send(embed)
 
 }
 
@@ -701,6 +703,25 @@ Self.user.setAvatar(pp)
 console.log(err)
 }
 }
+  //RECHERCHER UNE IP
+  if (cmd === prefix + "whoisip") {
+    message.delete();
+    let ip = args.slice(1).join(" ");
+    if (!ip)
+      return message.channel.send("Veuillez donner une IP à localiser !");
+    let whois = new Discord.RichEmbed();
+    whois.setTitle("🐱‍💻 __**Localisation de l'IP**__ : ");
+    whois.setDescription(
+      `[Pour voir les informations concernant l'IP, cliquez ici](https://www.ip-tracker.org/locator/ip-lookup.php?ip=${ip})`
+    );
+    whois.setFooter(self,"https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048")
+    whois.setColor("00FF00");
+    message.channel.send(whois).then(function(message) {
+      message.delete(60500);
+    });
+    console.log(chalk.blue.bold("IP localisée !"));
+  }
+
 
 });
 
