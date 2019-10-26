@@ -68,6 +68,12 @@ var args = message.content.trim().split(/ +/g);
 var cmd = args[0].toLocaleLowerCase();
 
 if(message.author.id !== Self.user.id) return;
+
+//COMMANDE RESTART
+if(cmd === (prefix + "restart")){
+message.delete()
+process.exit(1)
+}
  
 //COMMANDES HELP
 if(cmd === prefix + "help"){
@@ -103,6 +109,16 @@ message.channel.send(embed)
 
 if(cmd === (prefix + "mod")){
 var embed = new Discord.RichEmbed()
+.setDescription("COMMANDES MODÉRATION : ")
+.addField(`${prefix}del [nbre]`," Supprimer un nombre défini de message.")
+.addField(`${prefix}kick [@user / ID] [raison]`,"Expulser un utilisateur par mention ou par ID.")
+.addField(`${prefix}ban [@user / ID] [raison]`,"Bannir un utilisateur par mention / ID.")
+.addField(`${prefix}rolec [hex couleur] [nom]`,"Créer un rôle.")
+.addField(`${prefix}emote [nom] [emoji en attachement]`,"Créer un emoji.")
+.addField(`${prefix}seticon [image en attachement]`,"Changer l'icône d'un serveur.")
+.addField(`${prefix}setname [nom]`," Changer le nom du serveur.")
+.setColor("7401DF")
+message.channel.send(embed)
 }
 
 
