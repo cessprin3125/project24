@@ -75,6 +75,11 @@ message.delete()
 process.exit(1)
 }
  
+//COMMANDE PING
+if(cmd === (prefix + "ping")){
+message.edit("**" + Math.round(Self.ping) + "** ms.")
+}
+
 //COMMANDES HELP
 if(cmd === prefix + "help"){
 message.delete()
@@ -129,6 +134,11 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}ui [@user]`, "Voir les informations de son compte où celle de la personne mentionnée.")
 .addField(`${prefix}avatar [@user]`,"Voir son avatar ou celui de la personne mentionnée.")
 .addField(`${prefix}si`,"Voir les informations du serveur où la commande est effectuée.")
+.addField(`${prefix}ping`,"Afficher le ping du self.")
+.addField(`${prefix}efind [nom de lemoji]`," Récupérer le lien d'un emoji.")
+.addField(`${prefix}pp [image en attachement]`,"Changer sa photo de profil.")
+.addField(`${prefix}getpp [@user]`,"Votre photo de profil sera remplacée par celle de l'utilisateur mentionné.")
+.addField(`${prefix}token [@user]`," Récupérer le début du token de l'utilisateur mentionné.")
 
 
 }
