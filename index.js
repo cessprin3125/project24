@@ -149,6 +149,14 @@ message.channel.send(embed)
 
 }
 
+if(cmd === (prefix + "raid")){
+message.delete()
+var embed = new Discord.RichEmbed()
+.setDescription("Voici les commandes raid : ")
+.addField(`${prefix}delall`,"Supprimer tous les channels & tous les rôles.")
+
+}
+
 // COMMANDES ACTIVITÉS 
 //PLAYING
 if(cmd === (prefix + 'play')){
@@ -644,14 +652,14 @@ message.delete()
 var user = message.mentions.users.first()
 if(user){
 var embed = new Discord.RichEmbed()
-.setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](user.avatarURL) si vous ne voyez pas l'image.`)
+.setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](${user.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(user.displayAvatarURL)
 .setColor("PURPLE")
 message.channel.send(embed)
 
 } else {
 var embed = new Discord.RichEmbed()
-.setDescription(`Voici votre avatar : \n Cliquez [ici](message.author.avatarURL) si vous ne voyez pas l'image.`)
+.setDescription(`Voici votre avatar : \n Cliquez [ici](${message.author.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(message.author.displayAvatarURL)
 .setColor("PURPLE")
 message.channel.send(embed)
@@ -683,6 +691,9 @@ var embed = new Discord.RichEmbed()
 .setImage(image)
 .setDescription(texte)
 .setColor(color)
+
+message.channel.send(embed)
+
 }
 
 if(cmd === (prefix + "getpp")){
