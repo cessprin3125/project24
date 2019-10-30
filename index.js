@@ -81,6 +81,17 @@ if(cmd === (prefix + "ping")){
 message.edit("**" + Math.round(Self.ping) + "** ms.")
 }
 
+//COMMANDE EVAL
+if(cmd === prefix + 'eval') {
+  let code = args.slice(1).join(" ")
+  if(!code) return;
+  try {
+    message.channel.send("```js\n \n" + eval(code) + "```").catch(console.error)
+  } catch (err) {
+    message.channel.send("```js\n \n" + err + "```")
+  }
+}
+
 //COMMANDES HELP
 if(cmd === prefix + "help"){
 message.delete()
@@ -147,6 +158,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}embed [hex color] [texte]`,"Envoyer un message sous forme de embed.")
 .addField(`${prefix}image [hex color] [texte] [image en attachement]`,"Envoyer une image sous forme de embed.")
 .addField(`${prefix}restart`,"Re - démarrer le self.")
+.addField(`${prefix}eval [code]`,"Cette commande sert à évaluer un code ( **très dangereuse**).")
 .setColor("7401DF")
 .setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
