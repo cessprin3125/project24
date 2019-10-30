@@ -326,7 +326,7 @@ const imageid = presence.image;
 const id = presence.applicationID
   rpcGenerator.getRpcImage(id, imageid)
   .then(image => {
-      let presence = new rpcGenerator.Rpc()
+      let presenceee = new rpcGenerator.Rpc()
       .setName(presence.name)
       .setUrl("https://twitch.tv/julia")
       .setType(presence.type)
@@ -337,7 +337,7 @@ const id = presence.applicationID
       .setDetails(presence.details)
       .setAssetsLargeImage(image.id)
       .setAssetsLargeText('chpas')
-      Self.user.setPresence(presence.toDiscord())
+      Self.user.setPresence(presenceee.toDiscord())
   })
 console.log("RPC activée.")
 } catch(err) {
