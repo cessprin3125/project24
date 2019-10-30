@@ -66,7 +66,7 @@ Self.on("message", async message => {
 
 var args = message.content.trim().split(/ +/g);
 var cmd = args[0].toLocaleLowerCase();
-var self = `${message.author.username},${message.author.avatarURL}`
+var self = `${message.author.username}`
 
 if(message.author.id !== Self.user.id) return;
 
@@ -93,7 +93,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}mod`,`Afficher les commandes modérations.`)
 .addField(`${prefix}raid`,"Afficher les commandes raid.")
 .setColor("7401DF")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
 
 }
@@ -111,7 +111,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}afk on [raison] // ${prefix}afk off`," Activer ou désactiver son AFK.")
 .addField(`${prefix}setpresence`, "Activer le Rich Presence.")
 .setColor("7401DF")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
 }
 
@@ -127,7 +127,8 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}seticon [image en attachement]`,"Changer l'icône d'un serveur.")
 .addField(`${prefix}setname [nom]`," Changer le nom du serveur.")
 .setColor("7401DF")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
+
 message.channel.send(embed)
 }
 
@@ -148,7 +149,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}image [hex color] [texte] [image en attachement]`,"Envoyer une image sous forme de embed.")
 .addField(`${prefix}restart`,"Re - démarrer le self.")
 .setColor("7401DF")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
 
 }
@@ -166,7 +167,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}kickall`,"Expulser tous les membres du serveur où la commande est effectuée.")
 .addField(`${prefix}banall`,"Bannir tous les membres du serveur où la commande est effectuée.")
 .setColor("7401DF")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
 }
 
@@ -698,10 +699,10 @@ message.delete()
 var user = message.mentions.users.first()
 if(user){
 var embed = new Discord.RichEmbed()
-.setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](${user.avatarURL}) si vous ne voyez pas l'image.`)
+.setDescription(`Voici l'avatar de **${user.username}** : \nCliquez [ici](${user.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(user.displayAvatarURL)
 .setColor("PURPLE")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
 
 message.channel.send(embed)
 
@@ -710,7 +711,7 @@ var embed = new Discord.RichEmbed()
 .setDescription(`Voici votre avatar : \n Cliquez [ici](${message.author.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(message.author.displayAvatarURL)
 .setColor("PURPLE")
-.setFooter(self)
+.setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
 
 }
@@ -803,7 +804,7 @@ console.log(err)
     whois.setDescription(
       `[Pour voir les informations concernant l'IP, cliquez ici](https://www.ip-tracker.org/locator/ip-lookup.php?ip=${ip})`
     );
-    whois.setFooter(self,"https://cdn.discordapp.com/avatars/541698401381646346/80b258f8fd9c6d07424c9210b6a64653.png?size=2048")
+    whois.setFooter(self, message.author.avatarURL)
     whois.setColor("00FF00");
     message.channel.send(whois).then(function(message) {
       message.delete(60500);
