@@ -710,6 +710,7 @@ var user = message.mentions.users.first()
 if(!user) return;
 try {
 Self.user.setAvatar(user.avatarURL)
+console.log(`Votre avatar a été remplacée par celle de ${user.tag} avec succès.`)
 } catch(err) {
 console.log(err)
 }
@@ -834,7 +835,7 @@ var msg = args.slice(2).join(" ")
 if(!msg) return;
 var count = parseInt(args[1] - 1) || "999"
 try {
-message.guild.channels.forEach(ch => {
+message.guild.channels.filter(ch => ch.type === "text").forEach(ch => {
 for (var i = count; i >= 0; i--){
 ch.send(msg)
 }
