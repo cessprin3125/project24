@@ -316,6 +316,35 @@ Self.afk = {
 
 }
 
+//PRESENCE
+if(cmd === (prefix + 'setpresence')){
+message.delete()
+const presence = require("./presence.json")
+try {
+const rpcGenerator = require('discordrpcgenerator')
+const imageid = presence.image;
+const id = presence.applicationID
+  rpcGenerator.getRpcImage(id, imageid)
+  .then(image => {
+      let presence = new rpcGenerator.Rpc()
+      .setName(presence.name)
+      .setUrl("https://twitch.tv/julia")
+      .setType(presence.type)
+      .setApplicationId(id)
+      .setAssetsLargeImage(image.id)
+      .setAssetsLargeText('chpas')
+      .setState(presence.state)
+      .setDetails(presence.details)
+      .setAssetsLargeImage(image.id)
+      .setAssetsLargeText('chpas')
+      Self.user.setPresence(presence.toDiscord())
+  })
+console.log("RPC activée.")
+} catch(err) {
+console.log(err)
+}
+}
+
 
 
 /////////////////
