@@ -747,7 +747,7 @@ var chpas = message.attachments.first()
 var image = chpas.url
 var color = args[1]
 var texte = args.slice(2).join(" ")
-if(!image || !color || !texte) return;
+if(!chpas || !color || !texte) return;
 var embed = new Discord.RichEmbed()
 .setImage(image)
 .setDescription(texte)
