@@ -66,6 +66,7 @@ Self.on("message", async message => {
 
 var args = message.content.trim().split(/ +/g);
 var cmd = args[0].toLocaleLowerCase();
+var self = `${message.author.username},${message.author.avatarURL}`
 
 if(message.author.id !== Self.user.id) return;
 
@@ -92,6 +93,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}mod`,`Afficher les commandes modérations.`)
 .addField(`${prefix}raid`,"[PARTIE EN DÉVELOPPEMENT]")
 .setColor("7401DF")
+.setFooter(self)
 message.channel.send(embed)
 
 }
@@ -109,6 +111,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}afk on [raison] // ${prefix}afk off`," Activer ou désactiver son AFK.")
 .addField(`${prefix}presence [on / off]`, "COMMANDE EN DÉVELOPPEMENT.")
 .setColor("7401DF")
+.setFooter(self)
 message.channel.send(embed)
 }
 
@@ -124,6 +127,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}seticon [image en attachement]`,"Changer l'icône d'un serveur.")
 .addField(`${prefix}setname [nom]`," Changer le nom du serveur.")
 .setColor("7401DF")
+.setFooter(self)
 message.channel.send(embed)
 }
 
@@ -143,8 +147,8 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}embed [hex color] [texte]`,"Envoyer un message sous forme de embed.")
 .addField(`${prefix}image [hex color] [texte] [image en attachement]`,"Envoyer une image sous forme de embed.")
 .addField(`${prefix}restart`,"Re - démarrer le self.")
-.setImage("https://cdn.discordapp.com/attachments/637644607655772206/637726056215871513/hanayamata.gif")
 .setColor("7401DF")
+.setFooter(self)
 message.channel.send(embed)
 
 }
@@ -162,6 +166,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}kickall`,"Expulser tous les membres du serveur où la commande est effectuée.")
 .addField(`${prefix}banall`,"Bannir tous les membres du serveur où la commande est effectuée.")
 .setColor("7401DF")
+.setFooter(self)
 message.channel.send(embed)
 }
 
@@ -475,6 +480,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         "Pour voir l'icône du serveur,",
         `[Cliquez ici](${message.guild.iconURL})`
       )
+      .setFooter(self)
 
     message.channel.send(embed).then(function(message) {
       message.delete(120100);
@@ -537,6 +543,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
 
         embed.setTimestamp();
         embed.setColor("8000FF");
+        embed.setFooter(self)
         message.channel.send(embed).then(function(message) {
           message.delete(120100);
         });
@@ -577,8 +584,8 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           "Pour voir l'avatar, cliquez ici : ",
           `[Avatar](${message.author.avatarURL})`
         );
-        embed.setTimestamp();
-        
+        embed.setFooter(self)
+
 
         embed.setColor("8000FF");
         message.channel.send(embed).then(function(message) {
@@ -616,6 +623,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         );
 
         embed.setColor("8000FF");
+        embed.setFooter(self)
 
         message.channel.send(embed).then(function(message) {
           message.delete(120100);
@@ -645,6 +653,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           `[Avatar](${member1.avatarURL})`
         );
 
+        embed.setFooter(self)
 
         embed.setColor("8000FF");
         message.channel.send(embed).then(function(message) {
@@ -663,6 +672,8 @@ var embed = new Discord.RichEmbed()
 .setDescription(`Voici l'avatar de **${user.username}** : \n Cliquez [ici](${user.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(user.displayAvatarURL)
 .setColor("PURPLE")
+.setFooter(self)
+
 message.channel.send(embed)
 
 } else {
@@ -670,6 +681,7 @@ var embed = new Discord.RichEmbed()
 .setDescription(`Voici votre avatar : \n Cliquez [ici](${message.author.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(message.author.displayAvatarURL)
 .setColor("PURPLE")
+.setFooter(self)
 message.channel.send(embed)
 
 }
