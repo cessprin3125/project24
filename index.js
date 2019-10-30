@@ -89,7 +89,6 @@ var embed = new Discord.RichEmbed()
 .setDescription("**PANEL DES COMMANDES HELP.**")
 .addField(`${prefix}util`,"Afficher les commandes utilitaires.")
 .addField(`${prefix}setup`,`Afficher les commandes pour le statut.`)
-.addField(`${prefix}fun`,`[PARTIE EN DÉVELOPPEMENT]`)
 .addField(`${prefix}mod`,`Afficher les commandes modérations.`)
 .addField(`${prefix}raid`,"Afficher les commandes raid.")
 .setColor("7401DF")
@@ -510,7 +509,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         "Pour voir l'icône du serveur,",
         `[Cliquez ici](${message.guild.iconURL})`
       )
-      .setFooter(self)
+      .setFooter(self, message.author.avatarURL)
 
     message.channel.send(embed).then(function(message) {
       message.delete(120100);
@@ -573,7 +572,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
 
         embed.setTimestamp();
         embed.setColor("8000FF");
-        embed.setFooter(self)
+        embed.setFooter(self, message.author.avatarURL)
         message.channel.send(embed).then(function(message) {
           message.delete(120100);
         });
@@ -614,7 +613,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           "Pour voir l'avatar, cliquez ici : ",
           `[Avatar](${message.author.avatarURL})`
         );
-        embed.setFooter(self)
+        embed.setFooter(self, message.author.avatarURL)
 
 
         embed.setColor("8000FF");
@@ -653,7 +652,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
         );
 
         embed.setColor("8000FF");
-        embed.setFooter(self)
+        embed.setFooter(self, message.author.avatarURL)
 
         message.channel.send(embed).then(function(message) {
           message.delete(120100);
@@ -683,7 +682,7 @@ var category = message.guild.channels.filter(c => c.type === 'category').size
           `[Avatar](${member1.avatarURL})`
         );
 
-        embed.setFooter(self)
+        embed.setFooter(self, message.author.avatarURL)
 
         embed.setColor("8000FF");
         message.channel.send(embed).then(function(message) {
@@ -701,7 +700,7 @@ if(user){
 var embed = new Discord.RichEmbed()
 .setDescription(`Voici l'avatar de **${user.username}** : \nCliquez [ici](${user.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(user.displayAvatarURL)
-.setColor("PURPLE")
+.setColor("BLACK")
 .setFooter(self, message.author.avatarURL)
 
 message.channel.send(embed)
@@ -710,7 +709,7 @@ message.channel.send(embed)
 var embed = new Discord.RichEmbed()
 .setDescription(`Voici votre avatar : \n Cliquez [ici](${message.author.avatarURL}) si vous ne voyez pas l'image.`)
 .setImage(message.author.displayAvatarURL)
-.setColor("PURPLE")
+.setColor("BLACK")
 .setFooter(self, message.author.avatarURL)
 message.channel.send(embed)
 
