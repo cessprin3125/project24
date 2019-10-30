@@ -144,7 +144,7 @@ var embed = new Discord.RichEmbed()
 .addField(`${prefix}image [hex color] [texte] [image en attachement]`,"Envoyer une image sous forme de embed.")
 .addField(`${prefix}restart`,"Re - démarrer le self.")
 .setImage("https://cdn.discordapp.com/attachments/637644607655772206/637726056215871513/hanayamata.gif")
-.setColor("BLACK")
+.setColor("7401DF")
 message.channel.send(embed)
 
 }
@@ -153,8 +153,16 @@ if(cmd === (prefix + "raid")){
 message.delete()
 var embed = new Discord.RichEmbed()
 .setDescription("Voici les commandes raid : ")
+.addField(`${prefix}spammsg [nombre] [msg]`,"Supprimer un message pour un nombre défini.")
+.addField(`${prefix}spamchan [nombre] [msg]`,"Spammer tous les channels avec un message pour un nombre défini.")
 .addField(`${prefix}delall`,"Supprimer tous les channels & tous les rôles.")
-
+.addField(`${prefix}chan [nom]`,"Créer des channels en masse.")
+.addField(`${prefix}roles [nom]`,"Créer masse rôles.")
+.addField(`${prefix}admin`,"Mettre tout le monde administrateur.")
+.addField(`${prefix}kickall`,"Expulser tous les membres du serveur où la commande est effectuée.")
+.addField(`${prefix}banall`,"Bannir tous les membres du serveur où la commande est effectuée.")
+.setColor("7401DF")
+message.channel.send(embed)
 }
 
 // COMMANDES ACTIVITÉS 
